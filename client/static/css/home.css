@@ -1,0 +1,53 @@
+body{
+    background-image: url("../img/chatBackground.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+}
+
+.title{
+    text-align: center;
+    text-shadow: 0 0 12px #FF0000;
+    color: white;
+}
+
+.chat{
+    display: grid;
+    background-color: rgba(240, 240, 240, 0.6);
+    border-radius: 20px;
+    border-style: solid;
+    border-color: rgb(200, 200, 200);
+    height: 70vh;
+    width:  60vw;
+    margin:   auto;
+    overflow: auto;
+}
+
+.chat > div{
+    border-radius: 15px;
+    padding: 10px;
+    color: white;
+    width: fit-content;
+    max-width: 80%;
+}
+
+.date, .username {
+    color: rgb(200, 200, 200);
+    padding: 5px;
+    font-size: 80%;
+}
+
+.message {
+    background-color: blue;
+    margin: 5px 10px 10px auto;
+}
+  
+.other-message {
+    background-color: gray;
+    margin: 10px auto 10px 10px;
+}
+
+form{
+    margin: auto;
+    width: 60vw;
+}

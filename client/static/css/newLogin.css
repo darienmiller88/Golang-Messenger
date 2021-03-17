@@ -1,0 +1,13 @@
+form{
+    margin-top: 10%;
+}
+
+form > a{
+    margin-left: 30%;
+    margin-top: 10px;
+}
+
+form > h6{
+    font-style: italic;
+    font-size: x-small;
+}

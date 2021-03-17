@@ -1,0 +1,121 @@
+.wrapper {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    height: 100vh;
+    width: 100vw;
+  }
+  
+  .side-bar {
+    grid-area: 1 / 1 / 2 / 2;
+    background-color: blue;
+    color: gray;
+    text-align: left;
+    padding: 20px;
+    font-size: 50px;
+  }
+  
+  .chat-room:hover {
+    cursor: pointer;
+    color: white;
+  }
+  
+  .messages-container {
+    grid-area: 1 / 2 / 2 / 3;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 40px;
+    min-height: 0;
+  }
+  
+  .chatbox {
+    display: grid;
+    align-items: end;
+    background-color: black;
+    border: 1px solid white;
+    overflow: scroll;
+  }
+  
+  .chatbox-inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 100%;
+    padding: 10px 0;
+  }
+  
+  .chatbox-inner > div {
+    border-radius: 15px;
+    padding: 10px;
+    color: white;
+    width: fit-content;
+    max-width: 50%;
+  }
+  
+  .chatbox-inner > .message {
+    background-color: blue;
+    margin: 10px 20px 10px auto;
+  }
+  
+  .chatbox-inner > .other-message {
+    background-color: gray;
+    margin: 10px auto 10px 20px;
+  }
+  
+  .as-console-wrapper {
+    display: none !important;
+  }
+/* .wrapper {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  height: 100vh;
+  width: 100vw;
+}
+
+.side-bar {
+  background-color: blue;
+  color: gray;
+  text-align: left;
+  padding: 20px;
+  font-size: 50px;
+}
+
+.chat-room:hover {
+  cursor: pointer;
+  color: white;
+}
+
+.messages-container {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto 40px;
+}
+
+.chatbox {
+  height: calc(100vh - 40px);
+  background-color: black;
+  border: 1px solid white;
+  overflow: scroll;
+}
+
+.chatbox>div {
+  border-radius: 15px;
+  padding: 10px;
+  margin: 20px;
+  color: white;
+  width: fit-content;
+  max-width: 50%;
+}
+
+.message {
+  background-color: blue;
+  margin: 10px 20px 10px auto;
+
+}
+
+.other-message {
+  background-color: gray;
+}
+
+input {
+  height: 40px;
+} */

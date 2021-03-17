@@ -1,0 +1,35 @@
+body{
+    background: url("../img/backgroundOne.png") no-repeat center center fixed;
+    background-size: cover;
+    height: 100%;
+    display: grid;
+}
+
+.title{
+    padding-top: 10px;
+    margin: auto;
+}
+
+.wrapper { 
+    position: relative; 
+}
+
+.fa-user{
+    position: absolute; 
+    top: 10px; left: 50px; 
+}
+
+.sign-in{
+    margin-top: 10%;
+    margin: auto;
+}
+
+.btn{
+    margin: auto;
+}
+
+.form-control{
+    margin: auto;
+    /* max-width: 25%; */
+    border-radius: 30px;
+}

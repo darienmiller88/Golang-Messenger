@@ -1,0 +1,139 @@
+body{
+    background-image: url("../img/gradientBackgroundOne.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+}
+
+.wrapper{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    width:  85vw;
+    height: 80vh;
+    margin: auto;
+    margin-top: 2%;
+}
+
+::-webkit-scrollbar-track {
+    background: rgb(50, 70, 90); 
+}
+
+/* 
+* This section will style the sidebar, which will contain all of the users chats that they're in
+*
+*/
+.sidebar{
+    display: grid;
+    grid-template-rows: 80px 60vh auto;
+    background-color: purple;
+}
+
+.sidebar > .chats-title{
+    display: grid;
+    background-color: rgb(50, 70, 90);
+}
+
+.sidebar > .chats-title > h1{
+    color: white;
+    margin: auto;
+}
+
+.sidebar > .group-chats{
+    overflow-y: auto;
+    background-color: white;
+}
+
+.sidebar > .group-chats > .group-chat-name{
+    padding: 15px;
+    background-color:rgb(50, 70, 90);
+}
+
+.sidebar > .group-chats > .group-chat-name > div{
+    color: white;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.sidebar > .add-new-chat{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: turquoise;
+}
+
+.sidebar > .add-new-chat > .new-group, .send-new-message{
+    display: grid;
+    background-color: rgb(50, 70, 90);
+    /* background-color: rgb(67, 86, 162); */
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.new-group > div, .send-new-message > div{
+    margin: auto;
+    color: white;
+}
+
+.sidebar > .group-chats > div:hover,
+.sidebar > .group-chats > div:focus {
+    background: rgb(50, 70, 160);
+    cursor: pointer;
+}
+
+.sidebar > .group-chats > div:active {
+    background: rgb(122, 184, 235);
+}
+
+.sidebar > .group-chats > div.clicked-color {
+    background: rgb(122, 184, 235);
+}
+
+/**************************************/
+/*       END OF SIDE BAR STYLING!     */
+/**************************************/
+
+/* 
+* This section will style the chat, which will contain all of the users messages that they're in
+*
+*/
+.chat-container{
+    display: grid;
+    grid-template-rows: 1fr 8fr auto;
+}
+
+.chat-container > .chat{
+    background-color: red;
+}
+
+.chat-container > .message-container{
+    display: grid;
+    grid-template-columns: 5% auto;
+}
+
+.chat-container > .chat-title{
+    padding: 10px 0;
+    background-color: chartreuse;
+    border: 2px solid black;
+}  
+
+.chat-container > .message-container > .image-bk{
+    display: grid;
+    background-color: blue;
+}
+
+.chat-container > .chat-title > .title-text{
+    color: white;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+/**************************************/
+/*       END OF CHAT STYLING!     */
+/**************************************/
+
+/* Icon styling */
+i{
+    margin: auto;
+    /* font-size: 1.6rem;  */
+    color: rgb(240, 240, 240);
+}
