@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=RocknRoll+One&display=swap');
+
 body{
     background-image: url("../img/gradientBackgroundOne.png");
     background-repeat: no-repeat;
@@ -12,6 +14,7 @@ body{
     height: 80vh;
     margin: auto;
     margin-top: 2%;
+    font-family: 'RocknRoll One', sans-serif;
 }
 
 ::-webkit-scrollbar-track {
@@ -58,15 +61,13 @@ body{
 .sidebar > .add-new-chat{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    background-color: turquoise;
 }
 
-.sidebar > .add-new-chat > .new-group, .send-new-message{
+.new-group, .send-new-message{
     display: grid;
     background-color: rgb(50, 70, 90);
     /* background-color: rgb(67, 86, 162); */
     border: 1px solid black;
-    cursor: pointer;
 }
 
 .new-group > div, .send-new-message > div{
@@ -75,12 +76,16 @@ body{
 }
 
 .sidebar > .group-chats > div:hover,
-.sidebar > .group-chats > div:focus {
+.sidebar > .group-chats > div:focus,
+.sidebar > .add-new-chat > .new-group:hover,
+.sidebar > .add-new-chat > .send-new-message:hover {
     background: rgb(50, 70, 160);
     cursor: pointer;
 }
 
-.sidebar > .group-chats > div:active {
+.sidebar > .group-chats > div:active,
+.sidebar > .add-new-chat > .new-group:active,
+.sidebar > .add-new-chat > .send-new-message:active  {
     background: rgb(122, 184, 235);
 }
 
@@ -98,35 +103,65 @@ body{
 */
 .chat-container{
     display: grid;
-    grid-template-rows: 1fr 8fr auto;
+    grid-template-rows: 1fr 7fr auto;
+    min-height: 0;
 }
 
 .chat-container > .chat{
-    background-color: red;
+    background-color: rgb(240, 240, 240);
+    overflow-y: scroll;
 }
+
+/* .chat-inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 100%;
+    padding: 10px 0;
+} */
 
 .chat-container > .message-container{
     display: grid;
-    grid-template-columns: 5% auto;
 }
 
 .chat-container > .chat-title{
-    padding: 10px 0;
-    background-color: chartreuse;
-    border: 2px solid black;
+    background-color: white;
+    font-family: 'RocknRoll One', sans-serif;
+    border-bottom: 1px solid black;
 }  
 
-.chat-container > .message-container > .image-bk{
-    display: grid;
-    background-color: blue;
-}
-
 .chat-container > .chat-title > .title-text{
-    color: white;
-    font-weight: bold;
+    color: rgb(50, 70, 90);
     margin-left: 20px;
+    font-size: 25px;
 }
 
+/* 
+Message styling
+*/
+.date, .username {
+    color: rgb(200, 200, 200);
+    padding: 5px;
+    font-size: 80%;
+}
+
+.chat > div{
+    border-radius: 15px;
+    padding: 10px;
+    color: white;
+    width: fit-content;
+    max-width: 80%;
+}
+
+.chat > .message {
+    background-color: blue;
+    margin: 5px 10px 10px auto;
+}
+  
+.chat > .other-message {
+    background-color: gray;
+    margin: 10px auto 10px 10px;
+}
 /**************************************/
 /*       END OF CHAT STYLING!     */
 /**************************************/

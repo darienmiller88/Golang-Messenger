@@ -1,6 +1,14 @@
+ # Chat 
+ 
+  ![](https://img.shields.io/badge/made%20by-DarienMiller-blue)
+  ![](https://img.shields.io/badge/Golang-1.14-yellow)
+  ![](https://img.shields.io/badge/HTML%2B%20CSS-48%25-red)
+  ![](https://img.shields.io/badge/test-passing-green)
+ <img width="960" alt="chat app" src="https://user-images.githubusercontent.com/32966645/111588302-bb79cd80-8799-11eb-85a0-550fd92a1a8a.PNG">
+
  ## Description
 
-Web Application to extract data from the NASA API and display them on dynamically on an HTML file! Written using the "Gin" web framework. View it at https://nasa-apod-application.herokuapp.com/. Click [here](https://github.com/gin-gonic/gin) to read more on the web framework I used for this project. So far, it allows the user to type in a specific date, and the app will re route the user to a new page with the NASA API picture and information for that date given, or an error page if invalid information is given. Here's a demo!
+Full stack chat application built using Golang and Postgres in the backend, and Javascript, HTML and CSS in the frontend. Enjoy!
 
  ## Installation
 
