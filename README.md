@@ -9,6 +9,11 @@
  ## Description
 
 Full stack chat application built using Golang and Postgres in the backend, and Javascript, HTML and CSS in the frontend. Enjoy!
+Features to be added:
+
+- User log in and log out using Golang sessions
+- Public and private messaging using socket.io on the frontend and backend
+- Storage of user messages in message history table
 
  ## Installation
 
