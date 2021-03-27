@@ -29,19 +29,19 @@
   
   .chatbox {
     display: grid;
-    /* align-items: end; */
+    align-items: end;
     background-color: black;
     border: 1px solid white;
     overflow: scroll;
   }
   
-  .chatbox-inner {
+  /* .chatbox-inner {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     width: 100%;
     padding: 10px 0;
-  }
+  } */
   
   .chatbox-inner > div {
     border-radius: 15px;

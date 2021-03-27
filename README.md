@@ -8,7 +8,7 @@
 
  ## Description
 
-Full stack chat application built using Golang and Postgres in the backend, and Javascript, HTML and CSS in the frontend. Enjoy!
+Full stack chat application built using Golang and Postgres in the backend, and Javascript, HTML and CSS in the frontend. Users are able to chat in a public chat, private chat groups, and with other users. Enjoy!
 
  ## Installation
 

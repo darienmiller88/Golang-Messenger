@@ -17,9 +17,6 @@ body{
     font-family: 'RocknRoll One', sans-serif;
 }
 
-::-webkit-scrollbar-track {
-    background: rgb(50, 70, 90); 
-}
 
 /* 
 * This section will style the sidebar, which will contain all of the users chats that they're in
@@ -29,6 +26,10 @@ body{
     display: grid;
     grid-template-rows: 80px 60vh auto;
     background-color: purple;
+}
+
+.sidebar > ::-webkit-scrollbar-track {
+    background: rgb(50, 70, 90); 
 }
 
 .sidebar > .chats-title{
@@ -46,12 +47,12 @@ body{
     background-color: white;
 }
 
-.sidebar > .group-chats > .group-chat-name{
+.sidebar > .group-chats > .group-chat{
     padding: 15px;
     background-color:rgb(50, 70, 90);
 }
 
-.sidebar > .group-chats > .group-chat-name > div{
+.sidebar > .group-chats > .group-chat > div{
     color: white;
     overflow: hidden;
     white-space: nowrap;
@@ -108,33 +109,53 @@ body{
 }
 
 .chat-container > .chat{
+    display: grid;
     background-color: rgb(240, 240, 240);
     overflow-y: scroll;
+    align-items: end;
 }
 
-/* .chat-inner {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    width: 100%;
-    padding: 10px 0;
-} */
+.chat-container > ::-webkit-scrollbar-track {
+    background: rgb(240, 240, 240);
+}
 
 .chat-container > .message-container{
     display: grid;
 }
 
 .chat-container > .chat-title{
+    display: inline-flex;
     background-color: white;
-    font-family: 'RocknRoll One', sans-serif;
     border-bottom: 1px solid black;
 }  
 
 .chat-container > .chat-title > .title-text{
     color: rgb(50, 70, 90);
+    padding: 10px 0;
     margin-left: 20px;
+    margin-right: auto; /*pushes the icon to the right*/
     font-size: 25px;
 }
+
+.chat-container > .chat-title > i {
+    font-size: x-large;
+    margin-right: 15px;
+    padding: 5px 0;
+}
+
+.chat-container > .chat-title > i:hover{
+    color: rgb(65, 105, 225);
+    text-shadow: 0 0 10px rgb(65, 105, 225);
+}
+
+.chat-container > .chat-title > i:active {
+    color: rgb(65, 15, 225);
+}
+
+
+/**************************************/
+/*       END OF CHAT STYLING!     */
+/**************************************/
 
 /* 
 Message styling
@@ -145,7 +166,7 @@ Message styling
     font-size: 80%;
 }
 
-.chat > div{
+.chat > .chat-inner > div{
     border-radius: 15px;
     padding: 10px;
     color: white;
@@ -153,22 +174,38 @@ Message styling
     max-width: 80%;
 }
 
-.chat > .message {
+.chat > .chat-inner > .message {
     background-color: blue;
     margin: 5px 10px 10px auto;
 }
   
-.chat > .other-message {
+.chat > .chat-inner > .other-message {
     background-color: gray;
     margin: 10px auto 10px 10px;
 }
-/**************************************/
-/*       END OF CHAT STYLING!     */
-/**************************************/
 
-/* Icon styling */
-i{
+/* 
+* chat member list styling
+*/
+
+.chat-member-list{
     margin: auto;
-    /* font-size: 1.6rem;  */
-    color: rgb(240, 240, 240);
+    max-height: 200px;
+    overflow-y: scroll;
+    border: 1px solid black;
+}
+
+.chat-member > h5 {
+    margin-right: auto;
+}
+
+.chat-member{
+    width: 100%;
+    display: inline-flex;
+    margin: auto;
+    padding: 10px;
+}
+
+.chat-member:hover{
+    background-color: darkgrey;
 }

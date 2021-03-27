@@ -5,14 +5,282 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <link rel="shortcut icon" href="../static/img/chat-favicon.png" type="image/x-icon">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <title>Document</title>
+        <style>
+            i{
+                margin-left: 5px;
+            }
+
+            i:hover{
+                color: whitesmoke;
+                cursor: pointer;
+            }
+
+            i:active{
+                color: wheat;
+                cursor: pointer;
+            }
+
+            .content {
+                width: 30%;
+                background-color: #355E95;  
+                overflow: auto;
+                white-space:nowrap;
+                margin:auto;
+            }
+
+            .column {
+                width: fit-content;
+                display: inline-flex;
+                border-radius: 10px;
+                padding: 10px;
+                margin: 10px;
+            }
+
+            
+            .odd{
+                background-color: violet;
+            }
+
+            .even{
+                background-color: turquoise;
+            }
+
+            .search{
+                display: block;
+                margin:auto; 
+                /* width: 50%; */
+                border: 1px solid grey;
+                border-radius: 5px;
+                outline: 0;
+            }
+
+            .search:hover, .search:focus {
+                border: 1.5px solid #009688;
+                background-color: white;
+            }
+
+            .users{
+                width: 30%;
+                background-color: #355E95;  
+                margin: auto;
+            }
+
+            .on-appended-div{
+                border: 2px solid black;
+                margin-bottom: 20px;
+            }
+            
+            .new-user{
+                color: whitesmoke;
+                text-align: left;
+                padding: 10px;
+                border: 1px solid black;
+                cursor: pointer;
+            }
+
+            .new-user:hover{
+                background-color:blueviolet;
+                cursor: pointer;
+            }
+
+            .new-user:active{
+                background-color: brown;
+                cursor: pointer;
+            }
+        </style>
+
     </head>
     <body>
-        <form action="/socket.io" method="POST">   
+        <!-- <form action="/socket.io" method="POST">   
             <label for="label">Type:</label>    
             <input type="text" name="chat" id="chat">
+        </form> -->
+
+        <!-- Button trigger modal -->
+        <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            Launch demo modal
+        </button>-->
+        <form>
+            <div class="input-search">
+                <input type="text" class="search" id="mysearch" placeholder="Add user" onkeyup="filterUsers()">
+            </div>
         </form>
+
+        <div class="users">
+            <!-- <div class="new-user">
+                 darienmiller88
+            </div>
+            <div class="new-user">
+                darienmiller88
+            </div> -->
+        </div>
+
+        <div class="content">
+            <!-- <div class="column odd">
+                <div class="username">
+                    darienmiller88
+                </div>
+                <i class="bi bi-x-circle-fill"></i>     
+            </div>
+            <div class="column even">
+                <div class="username">
+                    darienmiller8888888888   
+                </div>
+                <i class="bi bi-x-circle-fill"></i>     
+            </div>
+            <div class="column odd">
+                <div class="username">
+                    thedp97  
+                </div>
+                <i class="bi bi-x-circle-fill"></i>     
+            </div>    
+            <div class="column even">
+                <div class="username">
+                    niseybaby123   
+                </div>
+                <i class="bi bi-x-circle-fill"></i>     
+            </div>           -->
+        </div>
+
+        
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                ...
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
-        <script src="../static/js/testchat.js"></script>
+        <!-- <script src="../static/js/testchat.js"></script> -->
+
+        <script>
+            const userNameForm = document.querySelector("form")
+            const search = document.querySelector(".search")
+            const users = document.querySelector(".users")
+            const container = document.querySelector(".content")
+            const mysearch = document.getElementById("mysearch")
+            const iconClassName = "bi bi-x-circle-fill"
+            const newUser = "new-user"
+            const newClass = "on-appended-div"
+            const columnEven = "column even"
+            const columnOdd = "column odd"
+            let counter = 0
+            let usernames = {
+                "darienmiller88": false, 
+                "nisey"         : false,
+                "stevieboy"     : false,
+                "vinny"         : false,
+                "dp96"          : false,
+                "mangs"         : false
+            }
+
+            userNameForm.addEventListener("submit", e => {
+                e.preventDefault()
+                appendUserToList(search.value)
+                userNameForm.reset()
+            })
+
+            mysearch.addEventListener("keyup", e => {
+                console.log(mysearch.value)
+            })
+
+            container.addEventListener("click", e => {
+                //Only remove the div if the user clicks on the x icon
+                if(e.target.className === iconClassName){
+                    
+                    //When the user clicks to remove a username from the list, set its clicked flag back to false
+                    usernames[e.target.parentElement.innerText] = false
+                    console.log(`user ${e.target.parentElement.innerText} is ${usernames[e.target.parentElement.innerText]}`)
+                    e.target.parentElement.remove()
+                }
+            })
+
+            function filterUsers(){
+                const filter = search.value
+               
+                //First, remove any divs in the "users" div before filtering
+                users.querySelectorAll(`.${newUser}`).forEach(element => {
+                    users.removeChild(element)
+                })
+ 
+                //If the value in the search bar amounts to an zero length string, remove the following
+                //class from the div and end the function call
+                if(filter.length === 0){
+                    users.classList.remove(newClass)
+                    return
+                }
+
+                for (const username in usernames) {
+                    //If the string that was typed by the user was found in any of the strings in the array,
+                    //and that particular name was not clicked yet, append it to the users div
+                    if(username.toLowerCase().indexOf(filter) > -1 && !usernames[username]){
+                        let userDiv = document.createElement("div")
+
+                        userDiv.className = newUser
+                        userDiv.append(username)
+                        users.append(userDiv)
+                    }
+                }
+
+                //If there are no elements found in the "database" that satisfy the filter, remove the additional
+                //styling around the drop down. Otherwise, add it!
+                if(users.querySelectorAll(`.${newUser}`).length === 0){
+                    users.classList.remove(newClass)
+                }else{
+                    users.classList.add(newClass)
+                }
+            }
+
+            function appendUserToList(valueToAppend){
+                let div = document.createElement("div")
+                let userNameDiv = document.createElement("div")
+                let icon = document.createElement("i")
+
+                icon.className = iconClassName
+                userNameDiv.className = "username"
+                div.className = columnOdd //(counter % 2 === 0) ? columnEven : columnOdd
+                counter++
+
+                console.log(div)
+                userNameDiv.append(valueToAppend)
+                div.append(userNameDiv)
+                div.append(icon)
+                container.append(div)
+            }
+
+            users.addEventListener("click", e => {
+                //When the user clicks on a username from the dropdown, set its clicked flag to true to signal
+                //its later removal.
+                usernames[e.target.innerText] = true                
+                e.target.remove()
+
+                //If after removing, there are no more usernames in the dropdown, removing the additional styling
+                if(users.querySelectorAll(`.${newUser}`).length === 0){
+                    users.classList.remove(newClass)
+                }
+
+                console.log(`After removing ${e.target.innerText}, num users: ${users.querySelectorAll(`.${newUser}`).length}`)
+                appendUserToList(e.target.innerText)
+            })
+        </script>
     </body>
 </html>

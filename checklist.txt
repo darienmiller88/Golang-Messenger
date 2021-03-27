@@ -1,0 +1,14 @@
+Front end todo list!
+
+[x] add messages through message bar, append them to chat
+[x] have the chat scroll to the bottom every time a message is appended
+[x] most recent message appears for the chat div that is clicked
+[] add functionality to "create new group" and "message user" through modals
+[] append new div to chat list after adding new group or user 
+[] add "three dots vertical" to messages, allowing you to remove the message, satisfying the DELETE CRUD functionality
+
+back end todo list!
+
+[] Try to get either postgres of mysql running LMAO
+[] validate user login/sign in using sessions cookies, allow log out
+[] get public chat to send messages to all clients in public chat

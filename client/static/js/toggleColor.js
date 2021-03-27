@@ -1,6 +1,6 @@
-const divClassName = "group-chat-name"
+const divClassName = "group-chat"
 const clickedColor = "clicked-color"
-const container    = document.querySelector(".sidebar")
+const container    = document.querySelector(".group-chats")
 const groupChatDiv = document.querySelector(".chat-title")
 
 const activeState = (e) => {    
@@ -9,11 +9,11 @@ const activeState = (e) => {
 
     //Afterwards, pull out the chat name, and the most recent message from that particular div into two
     //seperate strings to be sent to the server for validation. 
-    const groupChatName = chatDiv.getElementsByTagName("div")[0].innerText
+    const groupChatName = chatDiv.querySelector(".group-chat-name").innerText
     //const lastMessage   = chatDiv.getElementsByTagName("div")[1].innerText
 
     //When the user clicks on a chat, change the name of the chat title to reflect the name of the group chat
-    groupChatDiv.getElementsByTagName("div")[0].innerHTML = groupChatName
+    groupChatDiv.querySelector(".title-text").innerText = groupChatName
 
     //Next, remove the "clicked-color" class from each div in the chat side bar to return it to its base color
     document.querySelectorAll(`.${divClassName}`).forEach(chatDiv =>{

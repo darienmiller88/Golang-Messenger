@@ -1,4 +1,5 @@
-const socket = io.connect("http://localhost:3333/socket.io")
+ const socket = io.connect("http://localhost:3333/socket.io")
+
 const form = document.querySelector("form")
 const input = document.getElementById("chat")
 

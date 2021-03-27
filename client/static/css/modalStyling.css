@@ -1,0 +1,86 @@
+/* 
+* Modal sstyling 
+*/
+
+.modal-body > ::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.search, .searchUser{
+    display: block;
+    margin:auto; 
+    width: 100%;
+    border: 1px solid grey;
+    border-radius: 5px;
+    outline: 0;
+}
+
+.search:hover, .search:focus, .searchUser:hover, .searchUser:focus {
+    border: 1.5px solid #009688;
+    background-color: white;
+}
+
+.drop-down{
+    width: 100%;
+    max-height: 200px;
+    background-color: #358f95;  
+    margin: auto;
+    overflow-y: scroll;
+}
+
+.selected-styling{
+    border: 2px solid black;
+    margin-bottom: 20px ;
+}
+
+.new-user{
+    width: 100%;
+    overflow: auto;
+    white-space: nowrap;
+    color: whitesmoke;
+    text-align: left;
+    padding: 10px;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.new-user:hover{
+    background-color:blueviolet;
+    cursor: pointer;
+}
+
+.new-user:active{
+    background-color: brown;
+    cursor: pointer;
+}
+
+i{
+    margin-left: 5px;
+}
+
+i:hover{
+    color: whitesmoke;
+    cursor: pointer;
+}
+
+i:active{
+    color: wheat;
+    cursor: pointer;
+}
+
+.selected-users {
+    width: 100%;
+    background-color: #355E95;  
+    overflow: auto;
+    white-space:nowrap;
+    margin:auto;
+}
+
+.selected-user {
+    width: fit-content;
+    display: inline-flex;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+    background-color: cornflowerblue;
+}
