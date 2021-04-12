@@ -42,27 +42,27 @@
 
                 <div class="group-chats">
                     <div class="group-chat">
-                        <div class="group-chat-name"> <b>L.R.D.D </b>  </div> 
+                        <div class="group-chat-name"> L.R.D.D </div> 
                         <div class="most-recent-message">Luis: They weren't fresh, but boy they were high quality</div> 
                     </div>
                     <div class="group-chat">
-                        <div class="group-chat-name"> <b>Munckin and Me!</b> </div>
+                        <div class="group-chat-name"> Munckin and Me!</div>
                         <div class="most-recent-message">Denise: Hey DD</div>
                     </div>
                     <div class="group-chat"> 
-                        <div class="group-chat-name"> <b>The boiz</b></div>
+                        <div class="group-chat-name"> The boiz </div>
                         <div class="most-recent-message">Vincent: Hehehe Steve dumb hehehe</div>
                     </div>
                     <div class="group-chat">
-                        <div class="group-chat-name"> <b>Example2</b> </div>
+                        <div class="group-chat-name"> Example2 </div>
                         <div class="most-recent-message"> Fred: I am fred, look at me! </div>
                     </div>
                     <div class="group-chat">
-                        <div class="group-chat-name"> <b>Example3</b>  </div>
+                        <div class="group-chat-name"> Example3 </div>
                         <div class="most-recent-message">Mark: Woah dude, farizzle! </div>
                     </div>
                     <div class="group-chat">
-                        <div class="group-chat-name"> <b>Magical School Bus </b> </div>
+                        <div class="group-chat-name"> Magical School Bus  </div>
                         <div class="most-recent-message">Arthur: Oh dear god, Please let this be a normal field trip! :( </div>
                     </div>
                 </div>
@@ -71,6 +71,7 @@
                     <div class="new-group" data-toggle="modal" data-target="#newChatModal">
                         <div> Create new group</div> 
                     </div>
+                    <!-- Modal for creating a new group chat -->
                     <div class="modal fade" id="newChatModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                           <div class="modal-content">
@@ -82,17 +83,17 @@
                             </div>
                             <div class="modal-body">
                                 <form class="form-group-chat">
-                                    <input type="text" class="search chat-name" placeholder="Group Chat Name" required name="send-group-chat-name">
+                                    <input type="text" class="search" id="input-groupt-chat-name" placeholder="Group Chat Name" required name="send-group-chat-name">
                                     <div class="error-message"></div>
                                     <br>
                                     <input type="text" class="search" id="add-new-chats" placeholder="Add user" required name="send-message">
                                 </form>
                                 <div class="drop-down" id="drop-down-new-group-chat"></div>
-                                <div class="selected-users" id="selected-users-new-group-chat" onclick="removeSelectedUser()"></div>
+                                <div class="selected-users" id="selected-users-new-group-chat"></div>
                             </div>
                             <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary"    data-dismiss="modal">Close</button>
-                              <button type="button" class="btn btn-primary save" data-dismiss="modal">Save changes</button>
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              <button type="button" class="btn btn-primary" id="create-new-chat">Create Chat</button>
                             </div>
                           </div>
                         </div>
@@ -117,11 +118,11 @@
                                     <input type="text" class="search" id="message-new-user" placeholder="Add user" required name="send-message">
                                 </form>
                                 <div class="drop-down" id="drop-down-message-user"></div>
-                                <div class="user-messaged" onclick="removeSelectedUser()"></div>
+                                <div class="selected-users user-messaged"></div>
                             </div>
                             <div class="modal-footer">
                               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                              <button type="button" class="btn btn-primary"   data-dismiss="modal">Save changes</button>
+                              <button type="button" class="btn btn-primary" id="create-new-user"  data-dismiss="modal">Create Chat</button>
                             </div>
                           </div>
                         </div>
@@ -171,7 +172,6 @@
                                         <h5>stevieboy</h5> 
                                         <button type="button" class="btn btn-danger remove">Remove</button>
                                     </div>
-
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -193,14 +193,14 @@
                             </div>
                             <div class="modal-body">
                                 <form class="form-add-user">
-                                    <input type="text" class="search" id="add-new-members" placeholder="Add user" required name="send-message">
+                                    <input type="text" class="search" id="add-new-members-input" placeholder="Add user" required name="send-message">
                                 </form>
                                 <div class="drop-down" id="drop-down-add-new-user"></div>
-                                <div class="selected-users" id="selected-users-add-new-user" onclick="removeSelectedUser()"></div>
+                                <div class="selected-users" id="selected-users-add-new-user"></div>
                             </div>
                             <div class="modal-footer">
                               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                              <button type="button" class="btn btn-primary"   data-dismiss="modal">Save changes</button>
+                              <button type="button" class="btn btn-primary" id="add-new-members"  data-dismiss="modal">Add Members</button>
                             </div>
                           </div>
                         </div>
@@ -215,10 +215,31 @@
                     They will be appended to the chat-inner, so the messages can appear at the bottom of
                     the screen rather than the top  -->
                     <div class="chat-inner"></div>
+
+                    <!-- This modal will be referenced by each message appended to the above div. -->
+                    <div class="modal fade" id="removeMessageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Remove your comment</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            This comment will be removed for the entire chat.
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" id="remove-comment-button">Remove</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                 </div>
 
                 <div class="message-container">
-                    <form class="input-message">
+                    <form class="input-message-form">
                         <input type="text" class="form-control form-control-md" required name="send-message" placeholder="Send message" aria-label="Recipient's username" aria-describedby="basic-addon2">
                     </form> 
                 </div>                 
@@ -228,9 +249,17 @@
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+
+        <!-- constants.js MUST be included first so every other js file below it can use the global variable  -->
+        <script src="../static/js/constants.js"></script> 
         <script src="../static/js/toggleColor.js"></script>
         <script src="../static/js/sendMessage.js"></script>
+        <script src="../static/js/filterUsers.js"></script>
         <script src="../static/js/addNewChats.js"></script>
         <script src="../static/js/colorMostRecentChat.js"></script>
+        <script src="../static/js/modalFunctionality.js"></script>
+        <script src="../static/js/handleDropDown.js"></script>
+        <script src="../static/js/removeUsersFromChat.js"></script>
+        <script src="../static/js/removeMessage.js"></script>
     </body>
 </html>

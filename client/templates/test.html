@@ -10,16 +10,17 @@
         <title>Document</title>
         <style>
             i{
-                margin-left: 5px;
+                font-size: xx-large;
+                margin-left: 50%;
             }
 
             i:hover{
-                color: whitesmoke;
+                color: gray;
                 cursor: pointer;
             }
 
             i:active{
-                color: wheat;
+                color: blue;
                 cursor: pointer;
             }
 
@@ -90,6 +91,21 @@
                 background-color: brown;
                 cursor: pointer;
             }
+
+            button{
+                margin-left: 45%;
+            }
+
+            #remove-comment{
+                padding: 5px;
+            }
+
+            #remove-comment:hover{
+                background-color: gray;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+           
         </style>
 
     </head>
@@ -108,7 +124,15 @@
                 <input type="text" class="search" id="mysearch" placeholder="Add user" onkeyup="filterUsers()">
             </div>
         </form>
-
+        
+        <i class="bi bi-three-dots-vertical" data-toggle="popover" data-trigger="focus" title="Dismissible popover" data-placement="top" data-content="remove"></i>
+       <br>
+       <br>
+       <button type="button" class="btn btn-lg btn-danger" data-toggle="popover" data-html='true' data-placement="top" data-content="<div id='remove-comment'>remove</div>">Click to toggle popover</button>
+<!-- 
+        <button type="button" class="btn btn-secondary" data-container="body" data-toggle="popover" data-trigger="focus" data-placement="top" data-content="<div id='remove-comment'>Remove</div>">
+            Popover on top
+          </button> -->
         <div class="users">
             <!-- <div class="new-user">
                  darienmiller88
@@ -167,6 +191,7 @@
             </div>
             </div>
         </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
@@ -178,6 +203,7 @@
             const users = document.querySelector(".users")
             const container = document.querySelector(".content")
             const mysearch = document.getElementById("mysearch")
+            const removeComment = document.getElementById("remove-comment")
             const iconClassName = "bi bi-x-circle-fill"
             const newUser = "new-user"
             const newClass = "on-appended-div"
@@ -201,6 +227,10 @@
 
             mysearch.addEventListener("keyup", e => {
                 console.log(mysearch.value)
+            })
+
+            removeComment.addEventListener("click", e => {
+                console.log("removed")
             })
 
             container.addEventListener("click", e => {
@@ -249,6 +279,18 @@
                     users.classList.add(newClass)
                 }
             }
+
+            $(document).ready(function(){
+                $('[data-toggle="popover"]').popover();   
+            });
+
+            $(document).on('click', '#remove-comment', function(){
+                alert('Clicked');
+            });
+
+            $('.popover-dismiss').popover({
+                trigger: 'focus'
+            })
 
             function appendUserToList(valueToAppend){
                 let div = document.createElement("div")

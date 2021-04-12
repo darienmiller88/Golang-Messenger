@@ -59,6 +59,10 @@ body{
     text-overflow: ellipsis;
 }
 
+.group-chat-name{
+    font-weight: bold;
+}
+
 .sidebar > .add-new-chat{
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -143,12 +147,12 @@ body{
     padding: 5px 0;
 }
 
-.chat-container > .chat-title > i:hover{
+i:hover{
     color: rgb(65, 105, 225);
     text-shadow: 0 0 10px rgb(65, 105, 225);
 }
 
-.chat-container > .chat-title > i:active {
+ i:active {
     color: rgb(65, 15, 225);
 }
 
@@ -171,15 +175,26 @@ Message styling
     padding: 10px;
     color: white;
     width: fit-content;
-    max-width: 80%;
+    max-width: 50%;
+    display: flex;
+    flex-direction: column;
 }
 
-.chat > .chat-inner > .message {
-    background-color: blue;
+.date-and-comment-removal{
+    display: inline-flex;
+    justify-content: space-between;
+}
+
+.date-and-comment-removal > i:hover{
+    cursor: pointer;
+}
+
+.chat > .chat-inner > .your-message {
+    background-color: blueviolet;
     margin: 5px 10px 10px auto;
 }
   
-.chat > .chat-inner > .other-message {
+.chat > .chat-inner > .other-user-message {
     background-color: gray;
     margin: 10px auto 10px 10px;
 }
@@ -192,6 +207,9 @@ Message styling
     margin: auto;
     max-height: 200px;
     overflow-y: scroll;
+}
+
+.add-border{
     border: 1px solid black;
 }
 

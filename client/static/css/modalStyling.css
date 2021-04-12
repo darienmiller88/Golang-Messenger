@@ -6,6 +6,10 @@
     background: rgba(255, 255, 255, 0.2);
 }
 
+.error-message{
+    color: red;
+}
+
 .search, .searchUser{
     display: block;
     margin:auto; 
@@ -83,4 +87,8 @@ i:active{
     padding: 10px;
     margin: 10px;
     background-color: cornflowerblue;
+}
+
+.disabled:hover{
+    cursor: not-allowed;
 }

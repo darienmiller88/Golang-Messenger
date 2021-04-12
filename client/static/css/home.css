@@ -23,12 +23,14 @@ body{
     overflow: auto;
 }
 
-.chat > div{
+.chat > .message, .other-message{
     border-radius: 15px;
     padding: 10px;
     color: white;
-    width: fit-content;
-    max-width: 80%;
+    /* width: fit-content; */
+    max-width: 50%;
+    display: flex;
+    flex-direction: column;
 }
 
 .date, .username {
@@ -45,6 +47,17 @@ body{
 .other-message {
     background-color: gray;
     margin: 10px auto 10px 10px;
+}
+
+.date-and-comment-removal{
+    display: inline-flex;
+    justify-content: space-between;
+}
+
+.date-and-comment-removal > i:hover{
+    cursor: pointer;
+    text-shadow: 12px 14px 16px red;
+
 }
 
 form{
