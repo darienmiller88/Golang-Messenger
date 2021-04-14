@@ -9,6 +9,36 @@ Front end todo list!
 
 back end todo list!
 
-[] Try to get either postgres of mysql running LMAO
+[] Try to get either postgres or mysql running LMAO
 [] validate user login/sign in using sessions cookies, allow log out
 [] get public chat to send messages to all clients in public chat
+
+
+
+
+
+
+
+
+
+
+
+
+func fileServer(router *chi.Mux, root string) {
+	fs := http.FileServer(http.Dir(root))
+
+	router.Get("/*", func(w http.ResponseWriter, r *http.Request) {
+		if _, err := os.Stat(root + r.RequestURI); os.IsNotExist(err) {
+			http.StripPrefix(r.RequestURI, fs).ServeHTTP(w, r)
+		} else {
+			fs.ServeHTTP(w, r)
+		}
+	})
+}
+
+func renderTemplate(response http.ResponseWriter, fileName string, data interface{}){
+	myTemplate := template.Must(template.ParseFiles(fileName))
+	if err := myTemplate.Execute(response, data); err != nil {
+		http.Error(response, err.Error(), http.StatusInternalServerError)
+	}
+}
