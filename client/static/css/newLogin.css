@@ -1,5 +1,5 @@
 form{
-    margin-top: 10%;
+    margin-top: 5%;
 }
 
 form > a{
@@ -10,4 +10,38 @@ form > a{
 form > h6{
     font-style: italic;
     font-size: x-small;
+}
+
+form > div > input{
+    width: 100%;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.error-message-body{
+    border: 2px solid red;
+    border-radius: 10px;
+    background-color: rgb(255, 209, 223);
+    padding: 10px;
+    display: inline-flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 10px;
+    /* margin-bottom: 10px; */
+}
+
+.error-message{
+    font-size: 10px;
+    margin: auto 0;
+    color: red;
+}
+
+i{
+    font-size: 15px;
+    margin: auto 0;
+}
+
+i:hover{
+    color: white;
+    cursor: pointer;
 }

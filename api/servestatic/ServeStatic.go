@@ -1,7 +1,6 @@
 package servestatic
 
 import (
-	"fmt"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -18,8 +17,6 @@ func (s *ServeStatic) Init(relativePathToStaticFolder string){
 	workDir, _ := os.Getwd()
 	root := http.Dir(filepath.Join(workDir, relativePathToStaticFolder))
 	s.fs = http.FileServer(http.Dir(root))
-
-	fmt.Println("dir in servestatic: ", workDir)
 }
 
 //This function will be used as a "HandlerFunc" in routers. Please route to the "/*" path using a get request

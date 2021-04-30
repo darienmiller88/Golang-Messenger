@@ -9,9 +9,15 @@ Front end todo list!
 
 back end todo list!
 
-[] Try to get either postgres or mysql running LMAO
+[x] Try to get either postgres or mysql running LMAO
+[] deploy to heroku
 [] validate user login/sign in using sessions cookies, allow log out
 [] get public chat to send messages to all clients in public chat
+[] save messages sent into message history
+[] create and save new group chats to group chat table
+[] receive messages from particular group chats and send to front end
+
+
 
 
 

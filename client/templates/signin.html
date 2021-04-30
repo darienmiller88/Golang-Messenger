@@ -6,32 +6,44 @@
         <link rel="stylesheet" href="../static/css/form.css">        
         <link rel="stylesheet" href="../static/css/newLogin.css">
         <link rel="shortcut icon" href="../static/img/mLogoFavicon.png" type="image/x-icon">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <title>Messenger - Log In</title>
     </head>
     <body>
         <div class="container"> 
             <div class="userform">
-                <form method="POST" action="/">
+                <form>
                     <img src="../static/img/mLogo-nobg.png" alt="Messenger-logo">
-                    <h1>Messenger</h1>
+                    <h3>Messenger</h3>
                     <h6>Chat to your heart's content!</h6>
+                   
                     <div class="form-group">
-                        <input type="text" name="userName" class="form-control form-button form-control-sm" placeholder="User Name">
+                        
+                        <input type="text" id="" name="userName" class="" placeholder="User Name">
                     </div>
-                    <div class="form-group">
-                        <input type="password" name="password" class="form-control form-button form-control-sm" placeholder="New Password">
+                    <div class="password-div">
+                        <input type="password" id="" name="password" class="" placeholder="New Password">
+                        <div class="error-message-body">
+                            <div class="error-message">Incorrect username or password.</div>
+                            <i class="bi bi-x"></i>
+                        </div>
                     </div>
+                    <br>
                     <button type="submit" class="btn btn-primary btn-sm btn-block">Log In</button>       
                     <hr>    
-                    <button type="button" class="btn btn-success btn-sm btn-block">Create Account</button> 
+                    <!-- <button type="button" id="create-account-button" class="btn btn-success btn-sm btn-block">Create Account</button>  -->
                     <!-- <a href="/">Forgot Password?</a> -->
-
-                    <!-- <a href="/signup" class="btn btn-success btn-lg" role="button" aria-pressed="true">Create New Account</a> -->
+                
+                    <button type="button" id="create-account-button" class="btn btn-success btn-sm btn-block">Create Account</button>
+                    
+                    <!-- <a href="/signup" class="btn btn-primary btn-sm btn-block" role="button" aria-pressed="true">Create New Account</a> -->
                     <!-- <a href="/signup">
                     </a> -->
                 </form>
             </div>
         </div>
+
+        <script src="../static/js/signin.js"></script>
     </body>
 </html>

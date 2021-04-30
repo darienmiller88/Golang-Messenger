@@ -23,8 +23,8 @@ func (s *SocketController) Init(){
 	}
 	
 	s.openSocketServer()
-	s.Router.Get("/socket.io/",  s.SocketServer.ServeHTTP)
-	s.Router.Post("/socket.io/", s.SocketServer.ServeHTTP)
+	s.Router.Get("/",  s.SocketServer.ServeHTTP)
+	s.Router.Post("/", s.SocketServer.ServeHTTP)
 }
 
 func (s *SocketController) openSocketServer(){

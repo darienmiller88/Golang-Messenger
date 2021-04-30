@@ -14,7 +14,7 @@ body{
 .chat{
     display: grid;
     background-color: rgba(240, 240, 240, 0.6);
-    border-radius: 20px;
+    border-radius: 10px;
     border-style: solid;
     border-color: rgb(200, 200, 200);
     height: 70vh;

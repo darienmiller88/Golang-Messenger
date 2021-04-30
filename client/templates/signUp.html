@@ -14,16 +14,15 @@
     <body>
         <form>
             <img src="../static/img/mLogo-nobg.png" alt="Messenger-logo">
-            <h1>Sign Up</h1>
-            <div class="form-group">
-                <input type="text" name="userName" class="form-control form-control-sm" placeholder="User Name">
-            </div>
-            <!-- <div class="form-group">
-                <input type="text" name="phone" class="form-control form-control-sm" placeholder="555-555-5555">
-            </div> -->
-            <div class="form-group">
-                <input type="password" name="password" class="form-control form-control-sm" placeholder="New Password">
-            </div>
+            <h1>Sign Up</h1>            
+            
+            <input type="text" name="userName" id="username-inputbox" placeholder="User Name">
+            <div class="error-message-username" style="color: red;"></div>
+           
+            <br>
+            <input type="password" name="password" id="password-inputbox" placeholder="New Password at least 6 characters">
+            <div class="error-message-password" style="color: red;"></div>
+            <br>
             <a href="/signin">Already have an account?</a>
             <hr>    
             <button type="submit" class="btn btn-success btn-sm btn-block">Create Account</button> 
