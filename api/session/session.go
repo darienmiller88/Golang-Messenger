@@ -2,6 +2,7 @@ package session
 
 import (
 	"chat_app/api/models"
+	"context"
 	"encoding/gob"
 	"fmt"
 
@@ -10,19 +11,32 @@ import (
 )
 
 var Store *sessions.CookieStore
+var Ctx context.Context
+const SessionName string = "session-token"
 
 func init(){
-	authKeyOne       := securecookie.GenerateRandomKey(64)
-	encryptionKeyOne := securecookie.GenerateRandomKey(32)
+	Ctx = context.Background()
+	authKeyOne := securecookie.GenerateRandomKey(32)
 
-	Store = sessions.NewCookieStore(authKeyOne, encryptionKeyOne)
+	Store = sessions.NewCookieStore([]byte("secret-key"))
 	Store.Options = &sessions.Options{
+		Path: "/",
 		MaxAge:   0,
 		HttpOnly: true,
 	}
 
-	fmt.Println("initialized")
+	fmt.Println("initialized, key:", authKeyOne)
 	gob.Register(models.User{})
+}
+
+func GetUserFromSession(newSession *sessions.Session) models.User{
+	user, ok := newSession.Values["user"].(models.User)
+
+	if !ok {
+		return models.User{}
+	}
+
+	return user
 }
 
 //"maxAge" will determine the length of the lifespan of the cookie.

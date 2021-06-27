@@ -64,7 +64,7 @@ function appendMessage(className, message){
 function changeChatText(userMessage){
     document.querySelectorAll(`.${groupChatClass}`).forEach(chatDiv => {
         if(chatDiv.className === fullClassName){
-            chatDiv.querySelector(".most-recent-message").innerHTML = userMessage
+            chatDiv.querySelector(".most-recent-message").textContent = userMessage
         }
     })
 }

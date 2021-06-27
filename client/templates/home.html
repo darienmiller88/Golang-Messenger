@@ -7,6 +7,7 @@
         <link rel="shortcut icon" href="../static/img/fav.png" type="image/x-icon">
         <link rel="stylesheet" href="../static/css/scrollbar.css">
         <link rel="stylesheet" href="../static/css/home.css">
+        <link rel="stylesheet" href="../static/css/message.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <title>Home</title>
@@ -26,52 +27,52 @@
                   <a class="nav-link" href="/message-history">Message History</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="">Log Out</a>
+                    <div class="nav-link log-out">Log Out</div>
                 </li>
               </ul>
             </div>
           </nav>
 
-          <h2 class="title">Welcome {{ .Username }}!</h2>
-          <div class="chat">
+          <div class="chat-header"> 
+              Welcome <span class="username">{{ . }}</span>!
           </div>
 
-              <!-- <div class="message">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                <div class="username">darienmiller88</div>
-                <div class="date">2021-03-04 3:52 AM</div>
-              </div>
-              <div class="other-message">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.                
-                <div class="username">niseybaby</div>
-                <div class="date">2021-03-04 3:52 AM</div>
-              </div>
-                <div class="message">Pharetra magna ac placerat vestibulum lectus. Tortor id aliquet lectus proin. Felis donec et odio pellentesque diam volutpat commodo. Mattis rhoncus urna neque viverra justo nec ultrices dui. Ornare massa eget egestas purus viverra accumsan in. Tempor commodo ullamcorper a lacus vestibulum. Pulvinar neque laoreet suspendisse interdum consectetur libero id faucibus nisl. Scelerisque varius morbi enim nunc faucibus a pellentesque sit. Convallis tellus id interdum velit. Amet nisl suscipit adipiscing bibendum est ultricies integer quis auctor. Nunc pulvinar sapien et ligula. Tempor orci dapibus ultrices in iaculis.                <div class="date">2021-03-04 3:52 AM</div>
-              </div>
-              <div class="other-message">hey, what's up?
-                <div class="username">darienmiller88</div>
-                <div class="date">2021-03-04 3:52 AM</div>
-              </div>
-              <div class="message">nothing much hey, what's up? Pharetra magna ac placerat vestibulum lectus
-                <div class="username">nisey</div>
-                <div class="date-and-comment-removal"> 
-                  <div class="date">2021-03-04 3:52 AM</div>                     
-                  <i class="bi bi-three-dots-vertical"></i>
+          <div class="chat">
+            <!-- Messages will be appended here instead to allow them to be pushed to the bottom-->
+            <div class="chat-inner"></div>
+
+            <!-- The modal will allow users to remove their messages! -->
+            <div class="modal fade" id="removeMessageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Remove your comment</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    This comment will be removed for the entire chat.
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="remove-comment-button">Remove</button>
+                  </div>
                 </div>
               </div>
-            
-              <div class="other-message">hey, what's up? Pharetra magna ac placerat vestibulum lectus. Tortor id aliquet lectus proin. Felis donec et 
-                <div class="username">darienmiller88</div>
-                <div class="date-and-comment-removal"> 
-                  <div class="date">2021-03-04 3:52 AM</div>                     
-                  <i class="bi bi-three-dots-vertical"></i>
-                </div>
-              </div> -->
+            </div>
+          </div>
               
           <form>
-            <input type="text" class="message-input form-control form-control-md" required name="send-message" placeholder="Send message" aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <input type="input" id="message-input" required name="send-message" placeholder="Send message">
           </form> 
-
-          <div class="message-container">
-               
-          </div>
+         
+          <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.min.js"></script> -->
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+          <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+          <script src="../static/js/logout.js"></script>
+          <script src="../static/js/appendMessage.js"></script>
+          <script src="../static/js/home.js"></script>
     </body>
 </html>

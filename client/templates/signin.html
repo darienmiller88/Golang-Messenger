@@ -11,39 +11,29 @@
         <title>Messenger - Log In</title>
     </head>
     <body>
-        <div class="container"> 
-            <div class="userform">
-                <form>
-                    <img src="../static/img/mLogo-nobg.png" alt="Messenger-logo">
-                    <h3>Messenger</h3>
-                    <h6>Chat to your heart's content!</h6>
-                   
-                    <div class="form-group">
-                        
-                        <input type="text" id="" name="userName" class="" placeholder="User Name">
-                    </div>
-                    <div class="password-div">
-                        <input type="password" id="" name="password" class="" placeholder="New Password">
-                        <div class="error-message-body">
-                            <div class="error-message">Incorrect username or password.</div>
-                            <i class="bi bi-x"></i>
-                        </div>
-                    </div>
-                    <br>
-                    <button type="submit" class="btn btn-primary btn-sm btn-block">Log In</button>       
-                    <hr>    
-                    <!-- <button type="button" id="create-account-button" class="btn btn-success btn-sm btn-block">Create Account</button>  -->
-                    <!-- <a href="/">Forgot Password?</a> -->
-                
-                    <button type="button" id="create-account-button" class="btn btn-success btn-sm btn-block">Create Account</button>
-                    
-                    <!-- <a href="/signup" class="btn btn-primary btn-sm btn-block" role="button" aria-pressed="true">Create New Account</a> -->
-                    <!-- <a href="/signup">
-                    </a> -->
-                </form>
-            </div>
-        </div>
-
+        <form>
+            <img src="../static/img/mLogo-nobg.png" alt="Messenger-logo">
+            <h3>Messenger</h3>
+            <h6>Chat to your heart's content!</h6>
+            
+            <label for="username">Username</label>
+            <input type="text" id="" name="userName" class="" placeholder="User Name">
+            <label for="password">Password</label>
+            <input type="password" id="" name="password" class="" placeholder="New Password">
+            <div class="error-message-target"></div>
+            <br>
+            <button type="submit" class="btn btn-primary btn-sm btn-block">Log In</button>       
+            <hr>    
+            <!-- <button type="button" id="create-account-button" class="btn btn-success btn-sm btn-block">Create Account</button>  -->
+            <!-- <a href="/">Forgot Password?</a> -->
+        
+            <button type="button" id="create-account-button" class="btn btn-success btn-sm btn-block">Create Account</button>
+            
+            <!-- <a href="/signup" class="btn btn-primary btn-sm btn-block" role="button" aria-pressed="true">Create New Account</a> -->
+            <!-- <a href="/signup">
+            </a> -->
+        </form>
+       
         <script src="../static/js/signin.js"></script>
     </body>
 </html>

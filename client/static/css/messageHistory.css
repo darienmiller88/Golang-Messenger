@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=RocknRoll+One&display=swap');
+
+body{
+    background-image: url("../img/chatBackground.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+}
+
+.title{
+    text-align: center;
+    text-shadow: 0 0 12px yellow;
+    color: white;
+    font-size: 35px;
+    font-family: 'RocknRoll One', sans-serif;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0);
+}
+
+.log-out{
+    cursor: pointer;
+}

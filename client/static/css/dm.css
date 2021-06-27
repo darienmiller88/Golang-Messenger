@@ -161,9 +161,10 @@ i:hover{
 /*       END OF CHAT STYLING!     */
 /**************************************/
 
-/* 
-Message styling
-*/
+
+/**************************************/
+/*       START OF MESSAGE STYLING!     */
+/**************************************/
 .date, .username {
     color: rgb(200, 200, 200);
     padding: 5px;
@@ -178,6 +179,7 @@ Message styling
     max-width: 50%;
     display: flex;
     flex-direction: column;
+    overflow-wrap: break-word;
 }
 
 .date-and-comment-removal{
@@ -199,9 +201,14 @@ Message styling
     margin: 10px auto 10px 10px;
 }
 
-/* 
-* chat member list styling
-*/
+/**************************************/
+/*       END OF MESSAGE STYLING!     */
+/**************************************/
+
+
+/********************************************/
+/*  START OF CHAT MEMBER LIST STYLING!      */
+/*******************************************/
 
 .chat-member-list{
     margin: auto;

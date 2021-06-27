@@ -1,13 +1,8 @@
-const signInForm = document.querySelector("form")
-const signInRoute = "signin"
-const closebuttonClassName = "bi bi-x"
-const API_URL = `http://localhost:7000/api/users/${signInRoute}`
-const passwordDiv = document.querySelector(".password-div")
-const errorMessageBodyDiv = document.querySelector(".error-message-body")
-const errorMessageDiv = document.querySelector(".error-message")
+const signInForm             = document.querySelector("form")
+const closebuttonClassName   = "bi bi-x"
+const API_URL                = `http://localhost:${location.port}/api/users/signin`
+const errorMessageTarget     = document.querySelector(".error-message-target")
 const createNewAccountButton = document.getElementById("create-account-button")
-
-errorMessageBodyDiv.style.display = 'none'
 
 signInForm.addEventListener("submit", async e => {
     e.preventDefault()
@@ -19,7 +14,6 @@ signInForm.addEventListener("submit", async e => {
         password,
     }
 
-    console.log(userData)
     const response = await fetch(API_URL, {
         method: "POST",
         body: JSON.stringify(userData),
@@ -31,28 +25,26 @@ signInForm.addEventListener("submit", async e => {
     const result = await response.json()
     
     if(result["error_message"]){
-        errorMessageBodyDiv.style.display = ''
-        errorMessageDiv.innerHTML = result["error_message"]
+        errorMessageTarget.innerHTML = ''
+        createErrorElement(result["error_message"])
         return
     }
     
-    console.log(result)
     signInForm.reset()
     window.location.href = "/"
 })
 
-// errorMessageBodyDiv.addEventListener("click", e => {
-//     if(e.target.className === closebuttonClassName){
-//         console.log("x button hit!");
-//         e.target.parentElement.remove()
-//     }
-// })
+errorMessageTarget.addEventListener("click", e => {
+    if(e.target.className === closebuttonClassName){
+        e.target.parentElement.remove()
+    }
+})
 
 createNewAccountButton.addEventListener("click", e =>{
     window.location.href = "/signup"
 })
 
-const createElement = (message) => {
+function createErrorElement(message) {
     const errorBodyDiv = document.createElement("div")
     const errorMessage = document.createElement("div")
     const buttonIcon   = document.createElement("i")
@@ -64,5 +56,5 @@ const createElement = (message) => {
     errorMessage.append(message)
     errorBodyDiv.append(errorMessage)
     errorBodyDiv.append(buttonIcon)
-    passwordDiv.append(errorBodyDiv)
+    errorMessageTarget.append(errorBodyDiv)
 }

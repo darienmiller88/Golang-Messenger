@@ -10,7 +10,7 @@ body{
 }
 
 form{
-    text-align: center;
+    /* text-align: center; */
     box-shadow: 18px 18px 15px grey;
     border-radius: 10px;
     padding: 20px;

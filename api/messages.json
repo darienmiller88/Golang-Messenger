@@ -1,0 +1,74 @@
+[
+ {
+  "model": {
+   "ID": 1,
+   "CreatedAt": "2021-06-18T15:02:23.660117-04:00",
+   "UpdatedAt": "2021-06-18T15:02:23.660117-04:00",
+   "DeletedAt": null
+  },
+  "username": "mynewuser",
+  "chat_id": 1,
+  "message_content": "My first message!",
+  "message_date": "6/18/2021, 3:02:23 PM"
+ },
+ {
+  "model": {
+   "ID": 2,
+   "CreatedAt": "2021-06-18T15:46:16.807219-04:00",
+   "UpdatedAt": "2021-06-18T15:46:16.807219-04:00",
+   "DeletedAt": "2021-06-21T01:14:33.373074-04:00"
+  },
+  "username": "mynewuser",
+  "chat_id": 2,
+  "message_content": "here's another message!",
+  "message_date": "6/18/2021, 3:46:16 PM"
+ },
+ {
+  "model": {
+   "ID": 3,
+   "CreatedAt": "2021-06-18T15:46:25.047563-04:00",
+   "UpdatedAt": "2021-06-18T15:46:25.047563-04:00",
+   "DeletedAt": "2021-06-21T01:52:03.952406-04:00"
+  },
+  "username": "mynewuser",
+  "chat_id": 3,
+  "message_content": "Yooo, i think i got it!",
+  "message_date": "6/18/2021, 3:46:25 PM"
+ },
+ {
+  "model": {
+   "ID": 4,
+   "CreatedAt": "2021-06-21T03:00:06.148831-04:00",
+   "UpdatedAt": "2021-06-21T03:00:06.148831-04:00",
+   "DeletedAt": null
+  },
+  "username": "mynewuser",
+  "chat_id": 4,
+  "message_content": "I wanna sleep lmao",
+  "message_date": "6/21/2021, 3:00:06 AM"
+ },
+ {
+  "model": {
+   "ID": 5,
+   "CreatedAt": "2021-06-21T03:00:30.136495-04:00",
+   "UpdatedAt": "2021-06-21T03:00:30.136495-04:00",
+   "DeletedAt": null
+  },
+  "username": "mynewuser",
+  "chat_id": 5,
+  "message_content": "but i'm sleep awake 😂",
+  "message_date": "6/21/2021, 3:00:30 AM"
+ },
+ {
+  "model": {
+   "ID": 6,
+   "CreatedAt": "2021-06-21T03:21:12.041946-04:00",
+   "UpdatedAt": "2021-06-21T03:21:12.041946-04:00",
+   "DeletedAt": null
+  },
+  "username": "fakenewuser",
+  "chat_id": 6,
+  "message_content": "stupid shit man",
+  "message_date": "6/21/2021, 3:21:12 AM"
+ }
+]

@@ -1,0 +1,58 @@
+/* This style block will style the chat window */
+.chat{
+    display: grid;
+    background-color: rgba(240, 240, 240, 0.6);
+    border-radius: 10px;
+    border-style: solid;
+    border-color: rgb(200, 200, 200);
+    height: 70vh; 
+    width:  60vw;
+    margin:   auto;
+    overflow: auto;
+    align-items: end; 
+    font-family: 'RocknRoll One', sans-serif;
+}
+
+/* This style block will style each messages append to chat inner. */
+.chat-inner > div{
+    border-radius: 15px;
+    padding: 10px;
+    color: white;
+    width: fit-content;
+    max-width: 80%;
+    display: flex;
+    flex-direction: column;
+    overflow-wrap: break-word;
+}
+
+.date, .message-username {
+    color: rgb(200, 200, 200);
+    padding: 5px;
+    font-size: 80%;
+}
+
+.message{
+    color: brown;
+}
+
+.your-message {
+    background-color: blue;
+    margin: 5px 10px 10px auto;
+}
+  
+.other-user-message {
+    background-color: gray;
+    margin: 10px auto 10px 10px;
+}
+
+/* Style the ellipse that allows you to remove the comment */
+.date-and-comment-removal{
+    display: inline-flex;
+    justify-content: space-between;
+}
+
+.date-and-comment-removal > i:hover{
+    cursor: pointer;
+    color: brown;
+    text-shadow: 12px 14px 16px red;
+}

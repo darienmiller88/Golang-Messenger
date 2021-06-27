@@ -1,15 +1,18 @@
 const signUpForm = document.querySelector("form")
-const API_URL = "http://localhost:7000/api/users/signup"
-const signInRoute = "/signin"
+const API_URL = `http://localhost:${location.port}/api/users/signup`
 const bordering = "add-border"
-const errorMessageUsername = document.querySelector(".error-message-username")
 const errorMesagePassword = document.querySelector(".error-message-password")
+const weakUsernameDiv = document.querySelector(".error-message-username")
+const weakPasswordDiv = document.querySelector(".weak-password")
 const userNameInputBox = document.getElementById("username-inputbox")
 const passwordInputBox = document.getElementById("password-inputbox")
 let errorMessageAddedUsername = false, errorMessageAddedPassword = false
 
 signUpForm.addEventListener("submit", async e => {
     e.preventDefault()
+    removeUsernameErrors()
+    removePasswordErrors()
+
     const formData = new FormData(signUpForm)
     const username = formData.get("userName")
     const password = formData.get("password")
@@ -28,45 +31,61 @@ signUpForm.addEventListener("submit", async e => {
     const result = await reponse.json()
 
     if (result["success"]){
-        window.location.href = signInRoute
+        window.location.href = "/"
     }else if(result["username_taken"]){
-        createElement(result["username_taken"], errorMessageUsername, userNameInputBox)
+        appendUsernameCorrection(result["username_taken"], userNameInputBox)
         errorMessageAddedUsername = true
     }else{
-        if (result["no_username_err"] && errorMessageAddedUsername) {
-            createElement(result["no_username_err"], errorMessageUsername, userNameInputBox)
+        if (result["weak_username_err"]) {
+            appendUsernameCorrection(result["weak_username_err"], userNameInputBox)
             errorMessageAddedUsername = true
         } 
-        if (result["no_password_err"]) {
-            createElement(result["no_password_err"], errorMesagePassword, passwordInputBox)  
-            errorMessageAddedPassword = true
+        if(result["password_errors"]){
+            appendPasswordCorrections(result["password_errors"])
         }
     }
 
-    console.log(result)
-    signUpForm.reset()
+    //signUpForm.reset()
 })
 
 userNameInputBox.addEventListener("keydown", () => {
     if(errorMessageAddedUsername){
         userNameInputBox.classList.remove(bordering)
-        errorMessageUsername.removeChild(errorMessageUsername.firstChild)
         errorMessageAddedUsername = false
     }
 })
 
-passwordInputBox.addEventListener("keydown", e => {
-    if(errorMessageAddedPassword){
-        passwordInputBox.classList.remove(bordering)
-        errorMesagePassword.removeChild(errorMesagePassword.firstChild)
-        errorMessageAddedPassword = false
-    }
-})
+//Function to append the password restrictions for the signup sent from the server in case the users password
+//is too weak.
+const appendPasswordCorrections = (passwordErrors) =>{
+    //Iterate through each password error, and add them to div, coloring them red or green as needed.
+    passwordErrors.forEach(elem => {
+        let li = document.createElement("li")
 
-const createElement = (message, divToAppendTo, inputBox) => {
+        //If the password was too weak, and it checked off one of the conditions, color it red to let the user know
+        //their password needs to include the additional checks.
+        li.style = (elem["is_password_weak"]) ? "color: red" : "color: green"
+        li.append(elem["password_error"])
+        weakPasswordDiv.append(li)
+    })
+}
+
+const appendUsernameCorrection = (message, inputBox) => {
     const h6 = document.createElement("h6")
 
     h6.append(message)
-    divToAppendTo.append(h6)
+    weakUsernameDiv.append(h6)
     inputBox.classList.add("add-border")
+}
+
+const removePasswordErrors = () => {  
+    weakPasswordDiv.querySelectorAll("li").forEach(elem => {
+        weakPasswordDiv.removeChild(elem)
+    })
+}
+
+const removeUsernameErrors = () => {
+    weakUsernameDiv.querySelectorAll("h6").forEach(elem => {
+        weakUsernameDiv.removeChild(elem)
+    })
 }

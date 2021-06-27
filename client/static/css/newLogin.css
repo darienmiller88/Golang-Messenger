@@ -1,5 +1,6 @@
 form{
-    margin-top: 5%;
+    margin-top: 7%;
+    text-align: center;
 }
 
 form > a{
@@ -12,9 +13,8 @@ form > h6{
     font-size: x-small;
 }
 
-form > div > input{
-    width: 100%;
-    border: 1px solid black;
+form > input{
+    width: 60%;
     border-radius: 10px;
 }
 

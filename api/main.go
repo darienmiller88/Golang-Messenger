@@ -5,9 +5,11 @@ import (
 	//"chat_app/fileserver"
 	"chat_app/api/controllers"
 	"chat_app/api/database"
-	// "chat_app/api/models"
-	// "chat_app/api/session"
-	// "encoding/gob"
+	"chat_app/api/models"
+	"encoding/json"
+	"io/ioutil"
+
+	//"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
@@ -24,35 +26,45 @@ import (
 
 type m map[string]interface{}
 
-func main(){
+func main() {
 	dir, _ := os.Getwd()
 	router := chi.NewRouter()
 
 	godotenv.Load(filepath.Join(dir, "../.env"))
 
-	//middlewares stack
 	router.Use(middleware.Logger)
 	router.Use(middleware.RealIP)
 	router.Use(middleware.Recoverer)
 	router.Use(cors.AllowAll().Handler)
 
 	viewsController := controllers.ViewsController{}
-	messageController := controllers.MessageController{}
 	socketController := controllers.SocketController{}
-	userController := controllers.UserController{}
+	apiController := controllers.APIControllers{}
 	db := database.DB{}
-		
+
 	db.InitDB(false)
-	socketController.Init()	
+	socketController.Init(db.DB)
 	viewsController.Init()
-	userController.Init(db.DB)
-	messageController.Init(db.DB)
+	apiController.Init(db.DB)
 
 	router.Mount("/", viewsController.Router)
+	router.Mount("/api", apiController.Router)
 	router.Mount("/socket.io/", socketController.Router)
-	router.Mount("/api/users", userController.Router)
 
+	go socketController.SocketServer.Serve()
+	defer socketController.SocketServer.Close()
+
+	//getPublicMessages(db)
 	fmt.Println("running on port", os.Getenv("PORT"))
-	log.Fatal(http.ListenAndServe(":" + os.Getenv("PORT"), router))
+	log.Fatal(http.ListenAndServe(":"+os.Getenv("PORT"), router))
 }
 
+func getPublicMessages(d database.DB) {
+	var users []models.User
+
+	d.DB.Find(&users)
+
+	data, _ := json.MarshalIndent(users, "", " ")
+
+	ioutil.WriteFile("users.json", data, 0644)
+}

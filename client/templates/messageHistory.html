@@ -6,7 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="../static/img/fav.png" type="image/x-icon">
         <link rel="stylesheet" href="../static/css/scrollbar.css">
-        <link rel="stylesheet" href="../static/css/home.css">
+        <link rel="stylesheet" href="../static/css/message.css">
+        <link rel="stylesheet" href="../static/css/messageHistory.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <title>Message History</title>
     </head>
@@ -22,33 +24,23 @@
                   <a class="nav-link" href="/direct-messages">Direct Messages</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/message-history">Message History</a>
+                  <a class="nav-link" href="">Message History</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="">Log Out</a>
+                  <div class="nav-link log-out">Log Out</div>
                 </li>
               </ul>
             </div>
         </nav>
 
-        <h2 class="title">Message History!</h2>
-          <div class="chat">
-              <div class="message">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                <div class="date">2021-03-04 3:52 AM</div>
-              </div>
-              <div class="other-message">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.                <div class="date">2021-03-04 3:52 AM</div>
-              </div>
-                <div class="message">Pharetra magna ac placerat vestibulum lectus. Tortor id aliquet lectus proin. Felis donec et odio pellentesque diam volutpat commodo. Mattis rhoncus urna neque viverra justo nec ultrices dui. Ornare massa eget egestas purus viverra accumsan in. Tempor commodo ullamcorper a lacus vestibulum. Pulvinar neque laoreet suspendisse interdum consectetur libero id faucibus nisl. Scelerisque varius morbi enim nunc faucibus a pellentesque sit. Convallis tellus id interdum velit. Amet nisl suscipit adipiscing bibendum est ultricies integer quis auctor. Nunc pulvinar sapien et ligula. Tempor orci dapibus ultrices in iaculis.                <div class="date">2021-03-04 3:52 AM</div>
-              </div>
-              <div class="other-message">hey, what's up?
-                <div class="date">2021-03-04 3:52 AM</div>
-              </div>
-              <div class="message">nothing much
-                <div class="date">2021-03-04 3:52 AM</div>
-              </div>
-              <div class="other-message">hey, what's up?
-                <div class="date">2021-03-04 3:52 AM</div>
-              </div>
-          </div>
+        <h2 class="title"><span class="username">{{ . }}</span>'s message history!</h2>
+        <div class="chat">
+            <!-- Messages are appended here, and then appended onto the chat -->
+            <div class="chat-inner"></div>
+        </div>
+
+        <script src="../static/js/logout.js"></script>
+        <script src="../static/js/appendMessage.js"></script>
+        <script src="../static/js/messageHistory.js"></script>
     </body>
 </html>

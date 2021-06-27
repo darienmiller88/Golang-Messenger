@@ -16,12 +16,17 @@
             <img src="../static/img/mLogo-nobg.png" alt="Messenger-logo">
             <h1>Sign Up</h1>            
             
+            <label for="username">Username</label>
             <input type="text" name="userName" id="username-inputbox" placeholder="User Name">
             <div class="error-message-username" style="color: red;"></div>
-           
-            <br>
-            <input type="password" name="password" id="password-inputbox" placeholder="New Password at least 6 characters">
-            <div class="error-message-password" style="color: red;"></div>
+
+            <div class="weak-username"></div>
+        
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password-inputbox" placeholder="New Password">    
+            <div class="weak-password"></div>
+
+            <!-- <div class="error-message-password" style="color: red;"></div>            -->
             <br>
             <a href="/signin">Already have an account?</a>
             <hr>    
@@ -31,6 +36,7 @@
             <!-- <a href="/signup">
             </a> -->
         </form>
+            <!-- <button type="click" class="btn btn-success btn-sm" onclick="removePasswordErrors()">Remove Errors</button>  -->
 
         <script src="../static/js/signup.js"></script>
     </body>
