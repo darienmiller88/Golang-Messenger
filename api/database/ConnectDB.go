@@ -22,11 +22,8 @@ type DB struct{
 func (d *DB) InitDB(autoMigrateDatabase bool){
 	var err error
 	d.autoMigrateDatabase = autoMigrateDatabase
-	db_host     := os.Getenv("POSTGRES_HOST")
-	db_name     := os.Getenv("POSTGRES_DBNAME")
-	db_username := os.Getenv("POSTGRES_USERNAME")
-	db_password := os.Getenv("POSTGRES_PASSWORD")
-	db_url      := fmt.Sprintf("host=%s user=%s password=%s dbname=%s sslmode=disable", db_host, db_username, db_password, db_name)
+
+	db_url      := os.Getenv("DATABASE_URL")
 	d.DB, err   = gorm.Open(postgres.Open(db_url), &gorm.Config{
 		Logger: logger.Default.LogMode(logger.Info),
 	})
@@ -34,14 +31,6 @@ func (d *DB) InitDB(autoMigrateDatabase bool){
 	if err != nil{
 		log.Fatal(err)
 	}
-	
-	// d.mysqlConnection()
-
-	// d.MYSQLDB.AutoMigrate(&models.Chat{}) 
-	// d.MYSQLDB.AutoMigrate(&models.User{})
-	// d.MYSQLDB.AutoMigrate(&models.Message{})
-	// d.MYSQLDB.AutoMigrate(&models.UsersChat{})
-	//d.MYSQLDB.AutoMigrate(&models.Person{})
 
 	// d.DB.AutoMigrate(&models.User{})
 	// d.DB.AutoMigrate(&models.Chat{})

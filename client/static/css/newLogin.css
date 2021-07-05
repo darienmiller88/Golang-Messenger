@@ -18,6 +18,16 @@ form > input{
     border-radius: 10px;
 }
 
+.session-expired{
+    margin: 0 auto;
+    background-color: rgb(255, 216, 209);
+    color: red;
+    width: fit-content;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid red;
+}
+
 .error-message-body{
     border: 2px solid red;
     border-radius: 10px;

@@ -3,7 +3,6 @@ package middlewares
 import (
 	"fmt"
 	"net/http"
-	"path/filepath"
 	"strings"
 
 	"chat_app/api/session"
@@ -15,10 +14,8 @@ func Authenticate(next http.Handler) http.Handler {
 		//Check to see if the user visited either the signin or signup route
 		nonRestrictedRoutesVisited := req.URL.String() == "/signin" || req.URL.String() == "/signup"
 		staticPageHit := strings.HasPrefix(req.URL.String(), "/static")
-		cookieName, _ := req.Cookie(session.SessionName)		
+		cookieName, _ := req.Cookie(session.SessionName)
 
-
-		fmt.Println("prefix:", filepath.Base(req.URL.String()), "static page hit:", staticPageHit)
 		//newSession, _ := session.Store.Get(req, session.SessionName)
 
 		//If the user is logged in (Cookie was found on client side), and they try to access either the sign up
@@ -27,7 +24,7 @@ func Authenticate(next http.Handler) http.Handler {
 		if cookieName != nil && nonRestrictedRoutesVisited {
 			http.Redirect(res, req, "/", http.StatusFound)
 			return
-		}else if cookieName == nil && !nonRestrictedRoutesVisited && !staticPageHit {
+		} else if cookieName == nil && !nonRestrictedRoutesVisited && !staticPageHit {
 			fmt.Println("unauthorized route hit! Method:", req.Method, "url:", req.URL.String())
 			http.Redirect(res, req, "/signin", http.StatusFound)
 			return

@@ -1,1 +1,4 @@
 .env
+tmp/
+runner.conf
+checklist.txt

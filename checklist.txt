@@ -10,10 +10,10 @@ Front end todo list!
 back end todo list!
 
 [x] Try to get either postgres or mysql running LMAO
-[] deploy to heroku
 [x] validate user login/sign in using sessions cookies, allow log out
 [x] get public chat to send messages to all clients in public chat
 [x] save messages sent into message history
+[] deploy to heroku
 [] create and save new group chats to group chat table
 [] receive messages from particular group chats and send to front end
 

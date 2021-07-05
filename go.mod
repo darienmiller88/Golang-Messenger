@@ -6,6 +6,7 @@ require (
 	github.com/gin-gonic/gin v1.6.3
 	github.com/go-chi/chi v1.5.1
 	github.com/go-chi/cors v1.2.0
+	github.com/go-chi/httprate v0.5.0
 	github.com/go-chi/render v1.0.1
 	github.com/googollee/go-socket.io v1.6.0
 	github.com/gorilla/securecookie v1.1.1

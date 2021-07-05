@@ -4,7 +4,6 @@ import (
 	//"fmt"
 
 	"chat_app/api/middlewares"
-	"chat_app/api/models"
 	"chat_app/api/servestatic"
 	"chat_app/api/session"
 	"fmt"
@@ -15,7 +14,6 @@ import (
 	// "path/filepath"
 
 	"github.com/go-chi/chi"
-	"github.com/gorilla/sessions"
 	"gopkg.in/unrolled/render.v1"
 )
 
@@ -53,35 +51,26 @@ func (v *ViewsController) signUp(res http.ResponseWriter, req *http.Request) {
 }
 
 func (v *ViewsController) signIn(res http.ResponseWriter, req *http.Request) {
+	fmt.Println("status code:", req.Response)
+	
 	v.render.HTML(res, http.StatusOK, "signin", nil)
 }
 
 func (v *ViewsController) home(res http.ResponseWriter, req *http.Request) {
 	newSession, _ := session.Store.Get(req, session.SessionName)
-	user := getUser(newSession)
+	user := session.GetUserFromSession(newSession)
 
 	v.render.HTML(res, http.StatusOK, "home", user.Username)
-	fmt.Println("authenticated home")
+	fmt.Println("remaining time left in session:", session.Store.Options.MaxAge)
 }
 
 func (v *ViewsController) messageHistory(res http.ResponseWriter, req *http.Request) {
 	newSession, _ := session.Store.Get(req, session.SessionName)
-	user := getUser(newSession)
+	user := session.GetUserFromSession(newSession)
 
 	v.render.HTML(res, http.StatusOK, "messageHistory", user.Username)
 }
 
 func (v *ViewsController) directMessages(res http.ResponseWriter, req *http.Request) {
 	v.render.HTML(res, http.StatusOK, "dm", nil)
-}
-
-
-
-func getUser(s *sessions.Session) models.User {
-	user, ok := s.Values["user"].(models.User)
-
-	if !ok {
-		return models.User{Authenticated: false}
-	}
-	return user
 }

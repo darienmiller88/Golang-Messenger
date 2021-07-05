@@ -6,9 +6,11 @@ import (
 	"fmt"
 	"net/http"
 	"strconv"
+	"time"
 	"unicode"
 
 	"github.com/go-chi/chi"
+	"github.com/go-chi/httprate"
 	"github.com/go-chi/render"
 
 	"golang.org/x/crypto/bcrypt"
@@ -26,19 +28,48 @@ func (u *UserController) Init(db *gorm.DB) {
 	u.Router = chi.NewRouter()
 	u.db = db
 
-	//Todo: Add rate limiter to this route to protect against DDOS attacks.
-	fmt.Println(session.Store.Options)
-	u.Router.Use(render.SetContentType(render.ContentTypeJSON))
-	u.Router.Post("/signup", u.signup)
+	u.Router.Use(render.SetContentType(render.ContentTypeJSON))	
+	u.Router.With(httprate.LimitByIP(1, 10 * time.Second)).Post("/signup", u.signup)
 	u.Router.Post("/signin", u.signin)
 	u.Router.Post("/signout", u.signout)
 	u.Router.Post("/getusername", u.getUserName)
+	//u.Router.Post("/session-expired", u.checkSessionExpired)
+}
+
+func (u *UserController) checkSessionExpired(res http.ResponseWriter, req *http.Request){
+	// newSession, err := session.Store.Get(req, session.SessionName)
+
+	// if err != nil{
+	// 	res.WriteHeader(http.StatusInternalServerError)
+	// 	return
+	// }
+
+
+	// if !session.GetUserFromSession(newSession).Authenticated {
+	// 	res.WriteHeader(http.StatusUnauthorized)
+	// 	return
+	// }
+	
+	// cookie, _ := req.Cookie(session.SessionName)
+	// var isSessionExpired bool
+	// if cookie == nil{
+	// 	isSessionExpired = true
+	// }
+
+	for _, cookieName := range req.Cookies(){
+		fmt.Println("cookie:", cookieName.Name)
+	}
+
+	render.JSON(res, req, m{
+		"is_session_Expired": 8, 
+		"session_expired_message": "Your session has expired!",
+	})
 }
 
 func (u *UserController) getUserName(res http.ResponseWriter, req *http.Request) {
 	newSession, err := session.Store.Get(req, session.SessionName)
 
-	if err != nil{
+	if err != nil {
 		res.WriteHeader(http.StatusInternalServerError)
 		return
 	}
@@ -68,7 +99,7 @@ func (u *UserController) signin(res http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	newSession, err := session.Store.Get(req, "session-token")
+	newSession, err := session.Store.Get(req, session.SessionName)
 
 	if err != nil {
 		http.Error(res, err.Error(), http.StatusInternalServerError)
@@ -152,8 +183,8 @@ func (u *UserController) validateSignUp(user models.User) m {
 
 	//Check to see if the username field is is at least n characters.
 	if usernameLen < minimumUsernameLen || usernameLen > maximumUsernameLen {
-		response["weak_username_err"] = fmt.Sprintf("At least %s characters, no more than %s.", 
-			strconv.Itoa(minimumUsernameLen), strconv.Itoa(maximumUsernameLen)) 
+		response["weak_username_err"] = fmt.Sprintf("At least %s characters, no more than %s.",
+			strconv.Itoa(minimumUsernameLen), strconv.Itoa(maximumUsernameLen))
 	}
 
 	//Check to see if the password has less than 8 characters or if it does not contain at least one number.
@@ -178,6 +209,12 @@ func (u *UserController) validateSignUp(user models.User) m {
 	}
 
 	return response
+}
+
+func isCookieActive(next http.Handler) http.Handler{
+	return http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
+
+	})
 }
 
 func stringContainsNumber(s []rune) bool {
