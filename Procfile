@@ -1,1 +1,1 @@
-web: bin/deployapp
+web: go run api/main.go
