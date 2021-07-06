@@ -1,1 +1,1 @@
-web: bin/deploy-app
+web: bin/deployapp
