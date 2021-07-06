@@ -25,17 +25,17 @@ func (d *DB) InitDB(autoMigrateDatabase bool){
 
 	db_url      := os.Getenv("DATABASE_URL")
 	d.DB, err   = gorm.Open(postgres.Open(db_url), &gorm.Config{
-		Logger: logger.Default.LogMode(logger.Info),
+		//Logger: logger.Default.LogMode(logger.Info),
 	})
 
 	if err != nil{
 		log.Fatal(err)
 	}
 
-	// d.DB.AutoMigrate(&models.User{})
-	// d.DB.AutoMigrate(&models.Chat{})
-	// d.DB.AutoMigrate(&models.Message{})
-	// d.DB.AutoMigrate(&models.UsersChat{})
+	d.DB.AutoMigrate(&models.User{})
+	d.DB.AutoMigrate(&models.Chat{})
+	d.DB.AutoMigrate(&models.Message{})
+	d.DB.AutoMigrate(&models.UsersChat{})
 
 	if(d.autoMigrateDatabase){
 		d.updateDatabase()
