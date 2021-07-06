@@ -32,7 +32,6 @@ func (u *UserController) Init(db *gorm.DB) {
 	u.Router.With(httprate.LimitByIP(1, 10 * time.Second)).Post("/signup", u.signup)
 	u.Router.Post("/signin", u.signin)
 	u.Router.Post("/signout", u.signout)
-	u.Router.Post("/getusername", u.getUserName)
 	//u.Router.Post("/session-expired", u.checkSessionExpired)
 }
 
@@ -64,19 +63,6 @@ func (u *UserController) checkSessionExpired(res http.ResponseWriter, req *http.
 		"is_session_Expired": 8, 
 		"session_expired_message": "Your session has expired!",
 	})
-}
-
-func (u *UserController) getUserName(res http.ResponseWriter, req *http.Request) {
-	newSession, err := session.Store.Get(req, session.SessionName)
-
-	if err != nil {
-		res.WriteHeader(http.StatusInternalServerError)
-		return
-	}
-
-	user := session.GetUserFromSession(newSession)
-
-	render.JSON(res, req, m{"username": user.Username})
 }
 
 func (u *UserController) signin(res http.ResponseWriter, req *http.Request) {
