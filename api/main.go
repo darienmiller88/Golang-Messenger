@@ -24,7 +24,6 @@ func main() {
 
 	godotenv.Load(filepath.Join(dir, "../.env"))
 
-	router.Use(middleware.Logger)
 	router.Use(middleware.RealIP)
 	router.Use(middleware.Recoverer)
 	router.Use(cors.AllowAll().Handler)

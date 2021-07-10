@@ -10,6 +10,7 @@ import (
 	"unicode"
 
 	"github.com/go-chi/chi"
+	"github.com/go-chi/chi/middleware"
 	"github.com/go-chi/httprate"
 	"github.com/go-chi/render"
 
@@ -28,39 +29,24 @@ func (u *UserController) Init(db *gorm.DB) {
 	u.Router = chi.NewRouter()
 	u.db = db
 
+	u.Router.Use(middleware.Logger)
 	u.Router.Use(render.SetContentType(render.ContentTypeJSON))	
-	u.Router.With(httprate.LimitByIP(1, 10 * time.Second)).Post("/signup", u.signup)
+	u.Router.With(httprate.LimitByIP(1, 10 * time.Second)).Post("/signup", u.signup)	
+	u.Router.With(httprate.LimitByIP(1, 1  * time.Second)).Post("/session-expired", u.checkSessionExpired)
 	u.Router.Post("/signin", u.signin)
 	u.Router.Post("/signout", u.signout)
-	//u.Router.Post("/session-expired", u.checkSessionExpired)
 }
 
 func (u *UserController) checkSessionExpired(res http.ResponseWriter, req *http.Request){
-	// newSession, err := session.Store.Get(req, session.SessionName)
-
-	// if err != nil{
-	// 	res.WriteHeader(http.StatusInternalServerError)
-	// 	return
-	// }
-
-
-	// if !session.GetUserFromSession(newSession).Authenticated {
-	// 	res.WriteHeader(http.StatusUnauthorized)
-	// 	return
-	// }
-	
-	// cookie, _ := req.Cookie(session.SessionName)
-	// var isSessionExpired bool
-	// if cookie == nil{
-	// 	isSessionExpired = true
-	// }
-
-	for _, cookieName := range req.Cookies(){
-		fmt.Println("cookie:", cookieName.Name)
+	//res.WriteHeader(http.StatusOK)
+	cookie, _ := req.Cookie(session.SessionName)
+	var isSessionExpired bool
+	if cookie == nil{
+		isSessionExpired = true
 	}
 
 	render.JSON(res, req, m{
-		"is_session_Expired": 8, 
+		"is_session_Expired": isSessionExpired, 
 		"session_expired_message": "Your session has expired!",
 	})
 }
@@ -101,6 +87,14 @@ func (u *UserController) signin(res http.ResponseWriter, req *http.Request) {
 		return
 	}
 
+	http.SetCookie(res, &http.Cookie{
+		Name: "username", 
+		Path: "/",
+		Value: user.Username,
+		HttpOnly: true,
+		Expires: time.Now().Add(time.Duration(session.SessionLength) * time.Second),
+	})
+
 	render.JSON(res, req, m{})
 }
 
@@ -116,6 +110,12 @@ func (u *UserController) signout(res http.ResponseWriter, req *http.Request) {
 	newSession.Values["user"] = models.User{}
 	newSession.Options.MaxAge = -1
 	newSession.Save(req, res)
+
+	http.SetCookie(res, &http.Cookie{
+		Name: "username", 
+		Path: "/",
+		MaxAge: -1,
+	})
 
 	render.JSON(res, req, m{})
 }

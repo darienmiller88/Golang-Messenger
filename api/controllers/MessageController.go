@@ -22,7 +22,7 @@ func (m *MessageController) Init(db *gorm.DB) {
 
 	m.Router.Get("/public-messages", m.getPublicMessages)
 	m.Router.Post("/get-message-history", m.getMessageHistory)
-	m.Router.Post("/delete-message", m.deleteMessage)
+	m.Router.Delete("/delete-message", m.deleteMessage)
 }
 
 func (m *MessageController) getPublicMessages(res http.ResponseWriter, req *http.Request) {

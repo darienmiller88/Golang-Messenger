@@ -1,1 +1,1 @@
-web: bin/deploy
+web: bin/chat_app

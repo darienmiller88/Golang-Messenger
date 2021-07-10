@@ -1,5 +1,6 @@
 const GET_MESSAGES_API_URL   = `http://localhost:${location.port}/api/messages/public-messages`
 const REMOVE_MESSAGE_API_URL = `http://localhost:${location.port}/api/messages/delete-message`
+const CHECK_EXPIRED_API_URL  = `http://localhost:${location.port}/api/users/session-expired`
 const SOCKET_API_URL         = `http://localhost:${location.port}`
 const form                   = document.querySelector("form")
 const inputBox               = document.getElementById("message-input")
@@ -16,9 +17,23 @@ socket.on("from_server", data => {
     appendMessage(data, otherUserMessage, false)
 })
 
-form.addEventListener("submit", e => {
-    e.preventDefault()
-    
+form.addEventListener("submit", async e => {
+   
+})
+
+inputBox.addEventListener("keydown", async e => {
+    if (e.key !== "Enter" || inputBox.value.trim().length === 0)
+        return
+
+    const response =  await fetch(CHECK_EXPIRED_API_URL, {
+        method: 'POST'
+    })
+    const result = await response.json()
+
+    if(result["is_session_Expired"]){
+        window.location.href = "/"
+        return
+    }
     const message = inputBox.value
     const messageData = {
         message_content: message,
@@ -27,8 +42,14 @@ form.addEventListener("submit", e => {
         chatname: "public",
     }
 
+    form.style.display = 'none'
+
     socket.emit("from_client", messageData)
     appendMessage(messageData, yourMessage, true)
+
+    setInterval(() => {
+        form.style.display = ''
+    }, 1000)
 
     form.reset()
 })
@@ -51,7 +72,7 @@ removeMessageButton.addEventListener("click", async () => {
     messageToBeRemoved.remove()
 
     const response = await fetch(REMOVE_MESSAGE_API_URL, {
-        method: "POST",
+        method: "DELETE",
         body: JSON.stringify(messageToRemove),
         headers: {
             "Content-type": "application/json"

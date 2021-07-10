@@ -44,6 +44,7 @@ func (v *ViewsController) Init() {
 	v.Router.Get("/message-history", v.messageHistory)
 	v.Router.Get("/", v.home)
 	v.Router.Get("/*", v.staticFileServer.StaticFileHandler)
+	v.Router.NotFound(v.notFoundPage404)
 }
 
 func (v *ViewsController) signUp(res http.ResponseWriter, req *http.Request) {
@@ -61,7 +62,6 @@ func (v *ViewsController) home(res http.ResponseWriter, req *http.Request) {
 	user := session.GetUserFromSession(newSession)
 
 	v.render.HTML(res, http.StatusOK, "home", user.Username)
-	fmt.Println("remaining time left in session:", session.Store.Options.MaxAge)
 }
 
 func (v *ViewsController) messageHistory(res http.ResponseWriter, req *http.Request) {
@@ -73,4 +73,8 @@ func (v *ViewsController) messageHistory(res http.ResponseWriter, req *http.Requ
 
 func (v *ViewsController) directMessages(res http.ResponseWriter, req *http.Request) {
 	v.render.HTML(res, http.StatusOK, "dm", nil)
+}
+
+func (v *ViewsController) notFoundPage404(res http.ResponseWriter, req *http.Request){
+	v.render.HTML(res, http.StatusNotFound, "404Error", nil)
 }

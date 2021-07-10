@@ -11,12 +11,13 @@ import (
 var Store *sessions.CookieStore
 
 const SessionName string = "session-token"
+const SessionLength int  = 60 * 20 //20 minutes
 
 func init() {
 	Store = sessions.NewCookieStore([]byte(os.Getenv("MY_SECRET_KEY")))
 	Store.Options = &sessions.Options{
 		Path:     "/",
-		MaxAge:   60 , //10 minutes
+		MaxAge:   SessionLength, 
 		HttpOnly: true,
 	}
 
