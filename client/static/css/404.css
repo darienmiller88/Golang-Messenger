@@ -1,0 +1,31 @@
+body{
+    background-image: url("../img/404background.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    
+}
+
+a{
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 10px;
+    padding: 1rem;
+    color: white;
+    border: 2px white solid;
+    font-family: 'RocknRoll One', sans-serif;
+    text-decoration: none;
+}
+
+a:hover{
+    border:rgb(211,211,211) 2px solid;
+    color: rgb(211,211,211)
+}
+
+a:active{
+    border:	rgb(105,105,105) 2px solid;
+    color: 	rgb(105,105,105);
+}
+
+.response{
+    color: white;
+}
