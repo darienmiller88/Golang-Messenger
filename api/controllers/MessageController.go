@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"chat_app/api/models"
+	"Golang-Messenger/api/models"
 	"net/http"
 
 	"github.com/go-chi/chi"

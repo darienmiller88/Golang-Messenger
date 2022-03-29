@@ -3,9 +3,9 @@ package controllers
 import (
 	//"fmt"
 
-	"chat_app/api/middlewares"
-	"chat_app/api/servestatic"
-	"chat_app/api/session"
+	"Golang-Messenger/api/middlewares"
+	"Golang-Messenger/api/servestatic"
+	"Golang-Messenger/api/session"
 	"fmt"
 
 	"net/http"
@@ -28,14 +28,14 @@ func (v *ViewsController) Init() {
 	v.Router = chi.NewRouter()
 	v.render = render.New(render.Options{
 		Extensions: []string{".tmpl", ".html"},
-		Directory:  "../client/templates",
+		Directory:  "./client/templates",
 	})
 
 	//Protect home page here instead
 	v.Router.Use(middlewares.Authenticate)
 
 	//Initialize the static file server, and give it the relative path to the client folder.
-	v.staticFileServer.Init("../client", v.Router)
+	v.staticFileServer.Init("./client", v.Router)
 
 	//Afterwards, initialize all of the routes to be served by the following methods.
 	v.Router.Get("/signup", v.signUp)

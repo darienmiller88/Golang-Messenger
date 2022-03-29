@@ -1,7 +1,7 @@
 package session
 
 import (
-	"chat_app/api/models"
+	"Golang-Messenger/api/models"
 	"encoding/gob"
 	"os"
 

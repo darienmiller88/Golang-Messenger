@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"chat_app/api/models"
+	"Golang-Messenger/api/models"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/driver/mysql"

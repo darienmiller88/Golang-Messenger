@@ -1,8 +1,8 @@
 package controllers
 
 import (
-	"chat_app/api/models"
-	"chat_app/api/session"
+	"Golang-Messenger/api/models"
+	"Golang-Messenger/api/session"
 	"fmt"
 	"net/http"
 	"strconv"

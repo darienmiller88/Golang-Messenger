@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"chat_app/api/models"
+	"Golang-Messenger/api/models"
 	"fmt"
 	"time"
 

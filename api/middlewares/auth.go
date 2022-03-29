@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"strings"
 
-	"chat_app/api/session"
+	"Golang-Messenger/api/session"
 )
 
 //Auth middleware to protect home page from unauthorized users, and the signin and signup from authorized users.

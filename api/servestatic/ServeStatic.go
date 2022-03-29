@@ -25,7 +25,7 @@ func (s *ServeStatic) Init(relativePathToStaticFolder string, router *chi.Mux){
 	s.fs = http.FileServer(http.Dir(s.root))
 	s.render = render.New(render.Options{
 		Extensions: []string{".tmpl", ".html"},
-		Directory:  "../client/templates",
+		Directory:  "./client/templates",
 	})
 
 	//router.Handle("/static/*", http.StripPrefix("/static", s.fs))
