@@ -1,1 +1,1 @@
-web: bin/chat_app
+web: bin/main
